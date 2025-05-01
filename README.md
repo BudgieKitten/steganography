@@ -1,4 +1,4 @@
-## Demo: project.budgiekitten.ca/steganography
+## Detailed explanation: https://budgiekitten.ca/project/large/2yav/steganography/
 
 ---
 
