@@ -32,12 +32,14 @@ class EmbedExtractTest {
     }
 
     @Test
-    @DisplayName("Check if embed can create a new file")
+    @DisplayName("Check if embed can create a new img file")
     void testEmbed() throws IOException {
         Embed.embed(img, msg, outputLocation);
         assertEquals(true, outputLocation.exists(), "Fails to write to output location");
     }
 
+    @Test
+    @DisplayName("Check if extract can create a new txt file")
     void testExtract() {
 
     }
