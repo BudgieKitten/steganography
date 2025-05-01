@@ -12,6 +12,7 @@ class EmbedExtractTest {
     File img;
     BufferedReader msg;
     File outputLocation;
+    File decryptedText;
 
     @BeforeEach
     void setUpFile() throws IOException{
@@ -23,12 +24,17 @@ class EmbedExtractTest {
 
     @AfterEach
     void cleanUpFile() throws IOException{
-        if (outputLocation.exists()) {
+        if (outputLocation != null && outputLocation.exists()) {
             outputLocation.delete();
+        }
+
+        if (decryptedText != null && decryptedText.exists()) {
+            decryptedText.delete();
         }
         img = null;
         msg = null;
         outputLocation = null;
+        decryptedText = null;
     }
 
     @Test
@@ -40,10 +46,13 @@ class EmbedExtractTest {
 
     @Test
     @DisplayName("Check if extract can create a new txt file")
-    void testExtract() {
+    void testExtract() throws IOException {
+        Embed.embed(img, msg, outputLocation);
+        assertEquals(true, outputLocation.exists(), "Fails to write to output location");
 
+        decryptedText = new File("./src/test/java/ca/budgiekitten/steganography/extracted.txt");
+        Extract.extract(outputLocation, decryptedText);
+        assertEquals(true, decryptedText.exists(), "Fails to write to decrypted file");
     }
-
-
 
 }
