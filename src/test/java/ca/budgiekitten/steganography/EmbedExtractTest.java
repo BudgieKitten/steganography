@@ -55,4 +55,29 @@ class EmbedExtractTest {
         assertEquals(true, decryptedText.exists(), "Fails to write to decrypted file");
     }
 
+    @Test
+    @DisplayName("Check if extracted file and original file are the same")
+    void testEmbedExtract() throws IOException {
+        Embed.embed(img, msg, outputLocation);
+        assertEquals(true, outputLocation.exists(), "Fails to write to output location");
+
+        decryptedText = new File("./src/test/java/ca/budgiekitten/steganography/extracted.txt");
+        Extract.extract(outputLocation, decryptedText);
+        assertEquals(true, decryptedText.exists(), "Fails to write to decrypted file");
+
+        File originalText = new File("./src/test/java/ca/budgiekitten/steganography/msg.txt");
+        BufferedReader original = new BufferedReader(new FileReader(originalText));
+        BufferedReader decrypted = new BufferedReader(new FileReader(decryptedText));
+
+        int originalContent = original.read();
+        int decryptedContent = decrypted.read();
+
+        while (originalContent != -1) {
+            assertEquals(originalContent, decryptedContent
+                    , "Decrypted content is different from original content");
+            originalContent = original.read();
+            decryptedContent = decrypted.read();
+        }
+    }
+
 }
