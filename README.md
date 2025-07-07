@@ -33,7 +33,10 @@ It is often difficult to distinguish whether an image contains the secret messag
 ### Embed
 You can input your image and a secret message, then output a file of your own choice.
 
-Currently, this project only supports inputs of .jpg, .jpeg, .bmp and .png; However, only .png is supported as output format because in the RGBA color range only .png can take the value of Alpha
+##### Some notes
+1. Currently, this project only supports *inputs* of .jpg, .jpeg, .bmp and .png. However, only .png is supported as *output* format because in the RGBA color range, only .png can take the value of Alpha
+2. Currently, this project only supports UTF-8. Any foreign characters that don't belong to the ASCII table will be substituted as '?' character.
+
 ![Embed secret](./images/embed.png "Embed secret")
 
 ### Extract
